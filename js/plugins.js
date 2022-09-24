@@ -32,7 +32,7 @@ var $plugins =
 {"name":"PictureCallCommon","status":true,"description":"ピクチャのボタン化プラグイン","parameters":{"透明色を考慮":"true","ピクチャ番号の変数番号":"21","ポインタX座標の変数番号":"0","ポインタY座標の変数番号":"0","タッチ操作抑制":"false","タッチ操作抑制スイッチ":"0","戦闘中常にコモン実行":"false","並列処理として実行":"false","無効スイッチ":"0"}},
 {"name":"EasingPicture","status":true,"description":"ピクチャーの移動パターンを増やします。","parameters":{}},
 {"name":"--選択系----------------","status":true,"description":"---------------------------------------------------------------","parameters":{}},
-{"name":"MPP_ChoiceEX","status":true,"description":"選択肢の機能を拡張します。","parameters":{"Max Page Row":"7","Disabled Position":"none"}},
+{"name":"MPP_ChoiceEX","status":true,"description":"選択肢の機能を拡張します。","parameters":{"Max Page Row":"10","Disabled Position":"none"}},
 {"name":"TMEventItemEx","status":true,"description":"アイテム選択の処理にヘルプウィンドウを追加し、\n個数表示の有無と表示行数をアイテムタイプごとに設定できます。","parameters":{"helpWindowEnabledItem":"0","helpWindowEnabledKey":"1","helpWindowEnabledA":"1","helpWindowEnabledB":"1","showItemNumberItem":"1","showItemNumberKey":"1","showItemNumberA":"1","showItemNumberB":"1","numVisibleRowsItem":"7","numVisibleRowsKey":"4","numVisibleRowsA":"4","numVisibleRowsB":"4","fixPlacement":"bottom"}},
 {"name":"ChangeSelectItemWindow","status":true,"description":"『アイテム選択の処理』のウィンドウの行数と列数を変更します。","parameters":{"Switch ID":"21","Max Columns":"1","Visible Rows":"7"}},
 {"name":"MessageTriggerSe","status":true,"description":"メッセージ送りSEプラグイン","parameters":{"validateSwitchId":"0","soundEffect":"{\"name\":\"nc123625\",\"volume\":\"30\",\"pitch\":\"100\",\"pan\":\"0\"}","doseContinueOnly":"false"}},
