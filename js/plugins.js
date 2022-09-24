@@ -46,6 +46,6 @@ var $plugins =
 {"name":"EventInformation","status":true,"description":"v1.1.1 イベントの頭上に文字を表示したい時に使います","parameters":{}},
 {"name":"MPP_SelfVariable","status":true,"description":"各イベントにセルフ変数を追加します。","parameters":{"Variables":"27"}},
 {"name":"Yami_SkipTitle","status":true,"description":"テストプレイ用にタイトルシーンを飛ばすことができます。","parameters":{}},
-{"name":"MenuCallCommon","status":true,"description":"Xボタンorマウスの右クリックでメニュー画面を開くかわりにコモンイベントを動作させるプラグイン","parameters":{"ComEvent":"1","ComCloseEvent":"0","ComSwitch":"0"}},
+{"name":"MenuCallCommon","status":false,"description":"Xボタンorマウスの右クリックでメニュー画面を開くかわりにコモンイベントを動作させるプラグイン","parameters":{"ComEvent":"1","ComCloseEvent":"0","ComSwitch":"0"}},
 {"name":"111_InputForm","status":true,"description":"フォーム作って文字入力（修正版）","parameters":{}}
 ];
