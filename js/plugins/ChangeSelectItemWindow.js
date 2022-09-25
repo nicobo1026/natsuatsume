@@ -53,7 +53,7 @@
     Window_ItemList.prototype.initialize.call(this, 0, 0, width, height);
     this.openness = 0;
     if($gameSwitches.value(switchID)){
-      this.opacity = 0;
+      //this.opacity = 0;
     }
     this.deactivate();
     this.setHandler('ok',     this.onOk.bind(this));

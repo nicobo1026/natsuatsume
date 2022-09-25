@@ -6,6 +6,13 @@
  http://opensource.org/licenses/mit-license.php
 ----------------------------------------------------------------------------
  Version
+ 1.23.0 2022/09/01 項目描画スクリプトの実行結果が文字列を返したとき、その文字列を描画するよう修正
+ 1.22.0 2021/09/19 カーソル位置を記憶して画面を開き直したときに復元できる機能を追加
+ 1.21.4 2022/04/25 前バージョンで追加したカレントシーンの判定方法を変更
+ 1.21.3 2022/04/22 カスタムシーンクラスをSceneManager配下に保持するよう変更
+ 1.21.2 2022/04/09 描画内容がnullの場合に描画をスキップするよう修正
+ 1.21.2 2022/04/06 空の項目を選択できるよう仕様変更
+ 1.21.1 2022/01/05 ウィンドウのテキストカラーを設定できる機能を追加
  1.20.1 2021/12/14 1.20.1のボタンの数を増やし不要なログを削除
  1.20.0 2021/12/14 ウィンドウ選択中に任意のボタンが押されたときに発生するイベントを登録できる機能を追加
  1.19.2 2021/09/24 データの項目数が1つのとき、行高さがウィンドウに合わせられてしまう問題を修正
@@ -245,6 +252,9 @@
  *
  * マップ画面にピクチャを表示します。
  * SceneManager.showMapPicture(1, 'ファイル名', 0, 0, 0, 100, 100, 255, 1);
+ *
+ * 現在のシーンが指定した識別子のカスタムシーンかどうかを返します。
+ * SceneManager.isCustomScene('Scene_ActorList')
  *
  * 利用規約：
  *  作者に無断で改変、再配布が可能で、利用形態（商用、18禁利用等）
@@ -644,6 +654,12 @@
  * @default 0
  * @type variable
  *
+ * @param RememberIndex
+ * @text インデックスを記憶
+ * @desc インデックス格納変数を指定している場合、画面を開いたときにカーソルの初期値を変数値で復元します。
+ * @default false
+ * @type boolean
+ *
  * @param ItemVariableId
  * @text 選択項目格納変数
  * @desc 選択中の項目オブジェクトが常に格納される変数です。数値以外のオブジェクトが格納されるので取り扱いに注意してください。
@@ -679,6 +695,12 @@
  * @desc 選択すると通常の決定音の代わりに指定したSEが演奏されます。
  * @default
  * @type struct<AudioSe>
+ *
+ * @param textColor
+ * @text テキストカラー
+ * @desc 描画文字列のデフォルトカラーです。制御文字「\c[n]」で指定する色番号を指定します。
+ * @default 0
+ * @type number
  */
 
 /*~struct~AudioSe:
@@ -952,6 +974,12 @@
         }
     }
 
+    const _SceneManager_initialize = SceneManager.initialize;
+    SceneManager.initialize = function() {
+        _SceneManager_initialize.apply(this, arguments);
+        this._customScene = {};
+    };
+
     SceneManager.callCustomMenu = function(sceneId) {
         if (!this.findSceneData(sceneId)) {
             throw new Error(`Scene data '${sceneId}' is not found`);
@@ -992,6 +1020,7 @@
         eval(createClassEval);
         sceneClass.prototype             = Object.create(Scene_CustomMenu.prototype);
         sceneClass.prototype.constructor = sceneClass;
+        this._customScene[sceneId] = sceneClass;
         return sceneClass;
     };
 
@@ -1032,6 +1061,10 @@
 
     SceneManager.findCustomMenuWindow = function(windowId) {
         return this._scene.findWindow ? this._scene.findWindow(windowId) : null;
+    };
+
+    SceneManager.isCustomScene = function(id) {
+        return this._scene && this._scene.constructor === this._customScene[id];
     };
 
     Game_Party.prototype.reserveMembers = function() {
@@ -1388,6 +1421,9 @@
             if (this.height === 0) {
                 this._dynamicHeight = true;
             }
+            if (this._data.RememberIndex) {
+                this.restoreIndexVariable();
+            }
         }
 
         registerButton(buttonList) {
@@ -1461,11 +1497,23 @@
         }
 
         updateIndexVariable() {
+            if (this._index < 0) {
+                return;
+            }
             if (this._data.IndexVariableId) {
                 $gameVariables.setValue(this._data.IndexVariableId, this._index);
             }
             if (this._data.ItemVariableId) {
                 $gameVariables.setValue(this._data.ItemVariableId, this.getItem(this._index));
+            }
+        }
+
+        restoreIndexVariable() {
+            if (this._data.IndexVariableId) {
+                const index = $gameVariables.value(this._data.IndexVariableId);
+                if (index >= 0) {
+                    this.select(index);
+                }
             }
         }
 
@@ -1725,7 +1773,7 @@
 
         isEnabled(index) {
             const item = this.getItem(index);
-            return item ? this.isEnabledSub(item) && !this.isMasking(index) : false;
+            return this.isEnabledSub(item) && !this.isMasking(index);
         }
 
         isMasking(index) {
@@ -1753,6 +1801,14 @@
         }
 
         setActor(actor) {}
+
+        normalColor() {
+            if (this._data.textColor > 0) {
+                return this.textColor(this._data.textColor)
+            } else {
+                return super.normalColor();
+            }
+        }
     }
 
     class Window_CustomMenuCommand extends Window_CustomMenu {
@@ -1876,11 +1932,16 @@
             if (scriptList && scriptList.length > 0) {
                 scriptList.forEach(script => {
                     try {
-                        eval(script)
+                        const itemText = eval(script);
+                        if (itemText === String(itemText)) {
+                            this.drawTextEx(itemText, r.x, r.y);
+                        }
                     } catch (e) {
                         outputError(e);
                     }
                 });
+            } else if (item === undefined || item === null) {
+                // do nothing
             } else if (item === String(item)) {
                 this.drawTextEx(item, r.x, r.y);
             } else if (item.hasOwnProperty('iconIndex')) {
