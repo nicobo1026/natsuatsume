@@ -9,7 +9,7 @@ var $plugins =
 {"name":"NOM_ChangeFontSize","status":true,"description":"文字サイズ調整プラグイン","parameters":{}},
 {"name":"DynamicDatabase","status":true,"description":"動的データベース構築プラグイン","parameters":{}},
 {"name":"EaseEventLoad","status":true,"description":"[Ver1.1.0]イベント処理軽量化","parameters":{"opt1valid":"true","opt2valid":"true","opt3valid":"true","opt4valid":"true","opt5valid":"true"}},
-{"name":"AutoLoad","status":true,"description":"タイトル画面仕様変更プラグイン","parameters":{"効果音演奏":"false","タイトルスキップポリシー":"1","タイトルマップID":"0"}},
+{"name":"AutoLoad","status":false,"description":"タイトル画面仕様変更プラグイン","parameters":{"効果音演奏":"false","タイトルスキップポリシー":"1","タイトルマップID":"0"}},
 {"name":"--デバッグ用-----------","status":true,"description":"---------------------------------------------------------------","parameters":{}},
 {"name":"AdjustPictureGraphical","status":true,"description":"ピクチャのグラフィカルな位置調整プラグイン。\nパラメータを変更したら「プロジェクトの保存」（Ctrl+S）","parameters":{"グリッドサイズ":"48","テストマップID":"-1"}},
 {"name":"GraphicalDesignMode","status":false,"description":"GUI画面デザインプラグイン\nパラメータを変更したら「プロジェクトの保存」（Ctrl+S）","parameters":{"デザインモード":"true","自動保存":"false","モバイル版作成":"false","モバイル偽装":"false","ウィンドウ透過":"false","グリッドサイズ":"48","パディング":"0","フォントサイズ":"0","行の高さ":"0","背景透明度":"0","アイコンサイズ調整":"false","背景表示可否固定":"false","右クリックで消去":"false","メッセージウィンドウを無視":"false"}},
@@ -54,5 +54,6 @@ var $plugins =
 {"name":"CustomizeErrorScreen","status":true,"description":"エラー画面表示改善プラグイン","parameters":{"MainMessage":"以下のエラーが発生しました。製作者にご報告願います。","HyperLink":"","OutputDetail":"true"}},
 {"name":"NRP_EventCollisionEX","status":true,"description":"v1.03 イベントの当たり判定を拡張する。","parameters":{"ConsiderEventMove":"true","SettingList":"[]"}},
 {"name":"Torigoya_SaveCommand","status":true,"description":"プラグインコマンドからセーブを実行できるようにします。","parameters":{}},
-{"name":"ServerTime","status":true,"description":"サーバータイムを取得します。","parameters":{}}
+{"name":"ServerTime","status":true,"description":"サーバータイムを取得します。","parameters":{}},
+{"name":"TitleNewGameOnly","status":true,"description":"ニューゲームオンリープラグイン","parameters":{"startString":"はじめる","font":"{\"name\":\"\",\"size\":\"35\",\"bold\":\"false\",\"italic\":\"false\",\"color\":\"rgba(255,255,255,1.0)\"}","startImage":"","fileExistAction":"2","soundEffect":"{\"name\":\"nc123625\",\"volume\":\"50\",\"pitch\":\"100\",\"pan\":\"0\"}","adjustX":"0","adjustY":"0"}}
 ];
