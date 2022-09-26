@@ -385,13 +385,13 @@
     Game_Event.prototype.pd_TE_CheckTouchEvent = function() {
         if(this.__pd_TE.touchTriggerType >= 3){
             if (TouchInput.isTriggered()) {
-                if($gameTemp._pd_TE_realTouchMapX >= this._realX && $gameTemp._pd_TE_realTouchMapX < this._realX + 1 &&
-                  $gameTemp._pd_TE_realTouchMapY >= this._realY && $gameTemp._pd_TE_realTouchMapY < this._realY + 1){
+                if($gameTemp._pd_TE_realTouchMapX >= this._realX - 0.3 && $gameTemp._pd_TE_realTouchMapX < this._realX + 1.3 &&
+                  $gameTemp._pd_TE_realTouchMapY >= this._realY - 1.5 && $gameTemp._pd_TE_realTouchMapY < this._realY + 1){
                     $gameTemp._pd_TE_touchTriggerTime = Date.now();
                 }
             }else if(TouchInput.isReleased() && Date.now() - $gameTemp._pd_TE_touchTriggerTime <= 500){
-                if($gameTemp._pd_TE_realTouchMapX >= this._realX && $gameTemp._pd_TE_realTouchMapX < this._realX + 1 &&
-                  $gameTemp._pd_TE_realTouchMapY >= this._realY && $gameTemp._pd_TE_realTouchMapY < this._realY + 1){
+                if($gameTemp._pd_TE_realTouchMapX >= this._realX - 0.3 && $gameTemp._pd_TE_realTouchMapX < this._realX + 1.3 &&
+                  $gameTemp._pd_TE_realTouchMapY >= this._realY - 1.5 && $gameTemp._pd_TE_realTouchMapY < this._realY + 1){
                     $gameTemp._pd_TE_touchTriggerTime = 0;
                     return true;
                 }
@@ -399,8 +399,8 @@
         }
         else if(this.__pd_TE.touchTriggerType >= 1){
             if (TouchInput.isTriggered()) {
-                if($gameTemp._pd_TE_realTouchMapX >= this._realX && $gameTemp._pd_TE_realTouchMapX < this._realX + 1 &&
-                  $gameTemp._pd_TE_realTouchMapY >= this._realY && $gameTemp._pd_TE_realTouchMapY < this._realY + 1){
+                if($gameTemp._pd_TE_realTouchMapX >= this._realX - 0.3 && $gameTemp._pd_TE_realTouchMapX < this._realX + 1.3 &&
+                  $gameTemp._pd_TE_realTouchMapY >= this._realY - 1.5 && $gameTemp._pd_TE_realTouchMapY < this._realY + 1){
                     return true;
                 }
             }
