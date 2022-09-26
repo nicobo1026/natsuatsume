@@ -49,5 +49,6 @@ var $plugins =
 {"name":"MenuCallCommon","status":false,"description":"Xボタンorマウスの右クリックでメニュー画面を開くかわりにコモンイベントを動作させるプラグイン","parameters":{"ComEvent":"1","ComCloseEvent":"0","ComSwitch":"0"}},
 {"name":"111_InputForm","status":true,"description":"フォーム作って文字入力（修正版）","parameters":{}},
 {"name":"FTKR_EventReSpawnEx","status":true,"description":"v1.0.0 EventReSpawn.jsとTemplateEvent.jsで生成した一時イベントの座標とセルフスイッチを記録する","parameters":{"Save Condition When Transfer":"1"}},
-{"name":"FloatVariables","status":true,"description":"変数の小数演算プラグイン","parameters":{"小数変数開始位置":"62","小数変数終了位置":"63"}}
+{"name":"FloatVariables","status":true,"description":"変数の小数演算プラグイン","parameters":{"小数変数開始位置":"62","小数変数終了位置":"63"}},
+{"name":"CustomizeErrorScreen","status":true,"description":"エラー画面表示改善プラグイン","parameters":{"MainMessage":"以下のエラーが発生しました。製作者にご報告願います。","HyperLink":"","OutputDetail":"true"}}
 ];
