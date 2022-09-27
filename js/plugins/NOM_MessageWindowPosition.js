@@ -62,9 +62,9 @@
       }
 
       Window_Help.prototype.initialize = function(numLines) {
-        var width = Graphics.boxWidth-100;
+        var width = Graphics.boxWidth;
         var height = this.fittingHeight(1);
-        Window_Base.prototype.initialize.call(this, 50, 0, width, height);
+        Window_Base.prototype.initialize.call(this, 0, 0, width, height);
         this._text = '';
     };
 
