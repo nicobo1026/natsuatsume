@@ -14,10 +14,10 @@
 (function() {
     'use strict';
     Window_Base.prototype.standardFontSize = function() {
-        return 24;
+        return 18;
     };
     Window_Base.prototype.lineHeight = function() {
-        return 32;
+        return 30;
     };
 
 })();

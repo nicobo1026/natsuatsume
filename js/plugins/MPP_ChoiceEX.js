@@ -845,6 +845,7 @@
         $gameMessage.setTexts(texts ? [...texts] : ['']);
         this._messageWindow.startMessage();
     };
+    
 
     //-----------------------------------------------------------------------------
     // Window_Message
